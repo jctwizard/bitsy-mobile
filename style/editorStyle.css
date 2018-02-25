@@ -55,6 +55,7 @@ canvas {
 }
 #editorContent {
 	height:100%;
+	width:100%;
 	white-space: nowrap;
 	display: inline-block;
 	padding-left: 0px; /*5px;*/
@@ -63,34 +64,34 @@ canvas {
 .panel {
 	display: inline-block;
 	vertical-align: top;
-	margin: 10px;
+	margin: 5px;
 	margin-right: 0px;
-	padding: 10px;
-	font-size: 16px;
-	border-radius: 4px;
+	padding: 0px;
+	font-size: 0px;
+	border-radius: 0px;
 }
 .panel .bar {
-	padding: 5px;
-	padding-left: 10px;
-	padding-right: 10px;
-	padding-bottom: 2px;
-	margin: -10px;
-	margin-bottom: 10px;
-	font-size: 20px;
-	line-height: 150%;
-	border-radius: 4px 4px 0px 0px;
+	padding: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	margin: 0px;
+	margin-bottom: 0px;
+	font-size: 11px;
+	line-height: 100%;
+	border-radius: 0px 0px 0px 0px;
 }
 .panel .bar .material-icons {
-	line-height: 150%;
+	line-height: 100%;
 	vertical-align: middle;
-	font-size: 24px;
+	font-size: 11px;
 }
 .panelShadow {
 	display: inline-block;
 	vertical-align: top;
-	margin: 10px;
+	margin: 00px;
 	margin-right: 0px;
-	border-radius: 4px;
+	border-radius: 0px;
 }
 textarea {
 	font-family: monospace;
@@ -102,25 +103,27 @@ input {
 	padding: 10px;
 }
 .helpMessage {
-	padding: 5px;
-	margin: 2px;
-	font-size: 13px;
-	line-height: 130%;
+	padding: 0px;
+	margin: 0px;
+	font-size: 11px;
+	line-height: 100%;
 }
 #aboutInner {
-	font-size: 13px;
-	line-height: 130%;
+	font-size: 11px;
+	line-height: 100%;
+  width: 100%;
+  height: 100%;
 }
 #exitCanvas {
-	width:256px;
-	height:256px;
+  width: 100%;
+  height: 100%;
 }
 #editSelectedExit {
-	padding: 10px;
-	margin: 2px;
-	width: 256px;
-	height: 350px;
-	font-size: 13px;
+	padding: 0px;
+	margin: 0px;
+	width: 100%;
+  height: 100%;
+	font-size: 11px;
 }
 .minimize {
 	float:right;
@@ -130,15 +133,15 @@ input {
 	font-weight: bold;
 }
 #titleText {
-	width: 400px;
-	font-size: 16px;
+	width: 200px;
+	font-size: 11px;
 }
 #bitsyEditorName {
-	font-size: 14px;
+	font-size: 11px;
 	float: right;
 }
 .toggleText {
-	color: blue;
+	color: black;
 	text-decoration: underline;
 }
 .toggleText:hover {
@@ -193,7 +196,7 @@ input {
 /*toolbar*/
 #toolsPanel {
 	padding-top: 5px;
-	font-size: 14px;
+	font-size: 11px;
 	width:100%;
 	overflow:auto;
 	display:none;
@@ -336,7 +339,8 @@ input {
 }
 
 #paintEditMain {
-	width:256px;
+	width: 100%;
+  height: 100%;
 	white-space:initial;
 	padding:none;
 	margin:none;
