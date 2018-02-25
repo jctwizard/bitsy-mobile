@@ -404,6 +404,7 @@ function start() {
 
 	//paint canvas & context
 	paint_canvas = document.getElementById("paint");
+	paint_scale = paint_canvas.offsetWidth /  tilesize;
 	paint_canvas.width = tilesize * paint_scale;
 	paint_canvas.height = tilesize * paint_scale;
 	paint_ctx = paint_canvas.getContext("2d");

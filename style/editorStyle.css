@@ -14,7 +14,9 @@ body {
 }
 canvas {
 	background: black;
-	margin-top: 4px;
+	margin-top: 0px;
+	width: 100%;
+	height: 100%;
 }
 
 #appRoot {
