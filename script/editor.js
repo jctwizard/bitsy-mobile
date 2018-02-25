@@ -1,4 +1,4 @@
-/* 
+/*
 4.6
 - filter drawings by name!
 - fix importing new-style html
@@ -314,7 +314,7 @@ function detectBrowserFeatures() {
 			browserFeatures.colorPicker = false;
 			document.getElementById("pageColor").type = "text";
 		}
-		
+
 		document.body.removeChild(input);
 	} catch(e) {
 		browserFeatures.colorPicker = false;
@@ -352,11 +352,11 @@ function hideUnsupportedFeatureWarning() {
 // This is the panel arrangement you get if you are new or your editor settings are out-of-date
 var defaultPanelPrefs = {
 	workspace : [
-		{ id:"aboutPanel", 			visible:true, 	position:0  },
-		{ id:"roomPanel", 			visible:true, 	position:1  },
-		{ id:"paintPanel", 			visible:true, 	position:2  },
-		{ id:"colorsPanel", 		visible:true, 	position:3  },
-		{ id:"downloadPanel", 		visible:true, 	position:4  },
+		{ id:"roomPanel", 			visible:true, 	position:0  },
+		{ id:"paintPanel", 			visible:false, 	position:1  },
+		{ id:"colorsPanel", 		visible:false, 	position:2  },
+		{ id:"downloadPanel", 		visible:false, 	position:3  },
+		{ id:"aboutPanel", 			visible:false, 	position:4  },
 		{ id:"gifPanel", 			visible:false, 	position:5  },
 		{ id:"dataPanel", 			visible:false, 	position:6  },
 		{ id:"exitsPanel", 			visible:false, 	position:7  },
@@ -486,7 +486,7 @@ function start() {
 
 	//respond to player movement event by recording gif frames
 	onPlayerMoved = function() {
-		if (isRecordingGif) 
+		if (isRecordingGif)
 			gifFrameData.push( ctx.getImageData(0,0,512,512).data );
 	};
 	onDialogUpdate = function() {
@@ -503,7 +503,7 @@ function start() {
 
 	onInventoryChanged = function(id) {
 		updateInventoryUI();
-	
+
 		// animate to draw attention to change
 		document.getElementById("inventoryItem_" + id).classList.add("flash");
 		setTimeout(
@@ -517,7 +517,7 @@ function start() {
 
 	onVariableChanged = function(id) {
 		updateInventoryUI();
-	
+
 		// animate to draw attention to change
 		document.getElementById("inventoryVariable_" + id).classList.add("flash");
 		setTimeout(
@@ -557,7 +557,7 @@ function setDefaultGameState() {
 	paletteIndex = 0;
 	palette[ selectedColorPal() ] = {
 		name : null,
-		colors : 
+		colors :
 			[
 				[0,82,204],
 				[128,159,255],
@@ -828,7 +828,7 @@ function on_drawing_name_change() {
 
 				if( node.type != "function" || node.name != "item" )
 					return; // not the right type of node
-				
+
 				if( node.arguments.length <= 0 || node.arguments[0].type != "literal" )
 					return; // no argument available
 
@@ -1158,7 +1158,7 @@ function duplicateDrawing() {
 
 		drawingId = nextTileId();
 
-		console.log("DUPLICATE TILE");		
+		console.log("DUPLICATE TILE");
 		console.log(drawingId);
 		console.log(copiedImageData);
 
@@ -1190,7 +1190,7 @@ function duplicateDrawing() {
 
 		drawingId = nextSpriteId();
 
-		console.log("DUPLICATE SPRITE");	
+		console.log("DUPLICATE SPRITE");
 		console.log(drawingId);
 		console.log(copiedImageData);
 
@@ -1220,7 +1220,7 @@ function duplicateDrawing() {
 
 		drawingId = nextItemId();
 
-		console.log("DUPLICATE ITEM");	
+		console.log("DUPLICATE ITEM");
 		console.log(drawingId);
 		console.log(copiedImageData);
 
@@ -1405,7 +1405,7 @@ function reloadDialogUICore() { // TODO: name is terrible
 	}
 	else {
 		document.getElementById("dialogText").value = "";
-	}	
+	}
 }
 
 // TODO : better name?
@@ -1700,7 +1700,7 @@ function map_onMouseMove(e) {
 			selectedExit.x = x;
 			selectedExit.y = y;
 			refreshGameData();
-			drawEditMap();	
+			drawEditMap();
 		}
 	}
 	else if( selectedEndingTile != null && isDragMovingEnding )
@@ -1715,7 +1715,7 @@ function map_onMouseMove(e) {
 			selectedEndingTile.x = x;
 			selectedEndingTile.y = y;
 			refreshGameData();
-			drawEditMap();	
+			drawEditMap();
 		}
 	}
 	else
@@ -1748,7 +1748,7 @@ function paint_onMouseDown(e) {
 }
 
 function paint_onMouseMove(e) {
-	if (isPainting) {	
+	if (isPainting) {
 		var off = getOffset(e);
 		var x = Math.floor(off.x / paint_scale);
 		var y = Math.floor(off.y / paint_scale);
@@ -1884,7 +1884,7 @@ function drawEditMap() {
 						ctx.strokeStyle = getComplimentingColor();
 						ctx.globalAlpha = 0.6;
 						ctx.strokeRect( (e.dest.x * tilesize * scale) - 1, (e.dest.y * tilesize * scale) - 1, (tilesize * scale) + 2, (tilesize * scale) + 2 );
-	
+
 						ctx.font = '14px sans-serif';
 						var roomStr = "From " + ( (room[r].name != null) ? room[r].name : ("room " + r) );
 						ctx.fillText( roomStr, (e.dest.x * tilesize * scale) - 1, (e.dest.y * tilesize * scale) - 5 );
@@ -2506,7 +2506,7 @@ function refreshPaintExplorer( doKeepOldThumbnails, filterString, skipRenderStep
 	var paintExplorerForm = document.getElementById("paintExplorerFormInner");
 	if( !doKeepOldThumbnails )
 		paintExplorerForm.innerHTML = "";
-	
+
 	for(var i = 0; i < idList.length; i++) {
 		var id = idList[i];
 		if(id != "A" || paintMode == TileType.Avatar)
@@ -3380,7 +3380,7 @@ function importGameFromFile(e) {
 	reader.onloadend = function() {
 		var fileText = reader.result;
 		gameDataStr = exporter.importGame( fileText );
-		
+
 		// change game data & reload everything
 		document.getElementById("game_data").value = gameDataStr;
 		on_game_data_change();
@@ -3413,7 +3413,7 @@ function on_toggle_animated() {
 			removeSpriteAnimation();
 		}
 		else if ( paintMode === TileType.Tile ) {
-			removeTileAnimation();			
+			removeTileAnimation();
 		}
 		else if ( paintMode === TileType.Item ) {
 			console.log("REMOVE ITEM ANIMATION");
@@ -3582,7 +3582,7 @@ function cacheDrawingAnimation(drawing,imageStoreId) {
 
 function restoreDrawingAnimation(imageStoreId,cachedAnimation) {
 	for (f in cachedAnimation) {
-		imageStore.source[ imageStoreId ].push( cachedAnimation[f] );	
+		imageStore.source[ imageStoreId ].push( cachedAnimation[f] );
 	}
 }
 
@@ -3789,7 +3789,7 @@ function grabCard(e) {
 	grabbedPanel.card = e.target.parentElement.parentElement;
 	grabbedPanel.size = getElementSize( grabbedPanel.card );
 	var pos = getElementPosition( grabbedPanel.card );
-	
+
 	grabbedPanel.shadow = document.createElement("div");
 	grabbedPanel.shadow.className = "panelShadow";
 	grabbedPanel.shadow.style.width = grabbedPanel.size.x + "px";
@@ -3871,7 +3871,7 @@ function getElementSize(e) { /* gets visible size */
 	};
 }
 
-// sort of a hack to avoid accidentally activating backpage and nextpage while scrolling through editor panels 
+// sort of a hack to avoid accidentally activating backpage and nextpage while scrolling through editor panels
 function blockScrollBackpage(e) {
 	var el = document.getElementById("editorWindow");
 	var maxX = el.scrollWidth - el.offsetWidth;
@@ -4140,7 +4140,7 @@ var IfBlockUI = function(node, num) {
 			ifNode.conditions.splice(index,1);
 			ifNode.results.splice(index,1);
 			serializeAdvDialog();
-			reloadAdvDialogUI();	
+			reloadAdvDialogUI();
 		};
 		return onDelete;
 	}
@@ -4482,7 +4482,7 @@ var SeqBlockUI = function(node, num) {
 	typeEl.innerText = "list"; //sequenceNode.type;
 	typeEl.title = "one line of dialog in the list is said on each interaction, in the order you choose";
 	leftSpan.appendChild( typeEl );
-	
+
 	//
 	var deleteEl = document.createElement("button");
 	deleteEl.appendChild( createIconElement("clear") );
@@ -4979,7 +4979,7 @@ function updateInventoryVariableUI(){
 		deleteVarEl.appendChild( createIconElement("clear") );
 		deleteVarEl.addEventListener('click', createOnVariableDelete(varInfo));
 		deleteVarEl.title = "delete this variable";
-		varDiv.appendChild(deleteVarEl);	
+		varDiv.appendChild(deleteVarEl);
 	}
 
 	if(isPlayMode) {
@@ -5046,7 +5046,7 @@ function togglePreviewDialog(event) {
 
 			console.log("PLAY MODE");
 			on_play_mode();
-		
+
 			startPreviewDialog( previewDialogScriptTree, function() {
 				console.log("CALLBACK!!!");
 				togglePreviewDialog( { target : { checked : false } } );
